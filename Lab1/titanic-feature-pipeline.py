@@ -24,7 +24,7 @@ titanic_df.drop(["Embarked"],inplace=True,axis = 1)
 titanic_fg = fs.get_or_create_feature_group(
     name="titanic_modal",
     version=1,
-    primary_key=["Pclass","Sex","Age","SibSp","Parch","Fare","Embarked"], 
+    primary_key=["Pclass","Age","SibSp","Parch","Fare","Sex_male","Sex_female","Embarked_C","Embarked_Q","Embarked_S"], 
     description="Titanic dataset")
 titanic_fg.insert(titanic_df, write_options={"wait_for_job" : False})
 
