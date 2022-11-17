@@ -52,7 +52,7 @@ def passenger(Pclass, Age, SibSp, Parch, Fare, Sex, Embarked):
     res = str(res[0])
     # We add '[0]' to the result of the transformed 'res', because 'res' is a list, and we only want 
     # the first element.
-    passenger_url = "https://raw.githubusercontent.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/main/lab1/assets/" + res + ".png"
+    passenger_url = "https://raw.githubusercontent.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/main/Lab1/assets/" + res + ".png"
     img = Image.open(requests.get(passenger_url, stream=True).raw)            
     return img
         
