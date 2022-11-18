@@ -23,3 +23,11 @@ The original dataset has been preprocessed in the following way:
 - Columns Sex and Embarked has been one hot encoded
 
 After the preprocessing, the feature group has been created on Hopsworks.
+
+# Training Pipeline
+- Gradient Boosting Classifier from Keras has been selected as model to use.
+- The feature view given as input is made entirely from the previously created feature group.
+- The dataset has been split in train and test with a 80/20 ratio
+- The results of the evaluation on the test set are:
+
+![](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Lab1/titanic_model/confusion_matrix.png?raw=true)
