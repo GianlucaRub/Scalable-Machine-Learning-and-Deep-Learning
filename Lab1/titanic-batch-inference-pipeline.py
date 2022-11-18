@@ -36,7 +36,6 @@ def g():
     batch_data = feature_view.get_batch_data()
     
     y_pred = model.predict(batch_data)
-    #print(y_pred)
     offset = 1
     passenger = y_pred[y_pred.size-offset]
     passenger = str(passenger)
@@ -49,7 +48,6 @@ def g():
    
     titanic_fg = fs.get_feature_group(name="titanic_modal", version=1)
     df = titanic_fg.read() 
-    #print(df)
     label = df.iloc[-offset]["survived"]
     label = str(int(label))
     label_url = "https://raw.githubusercontent.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/main/Lab1/assets/" + label + ".png"
@@ -71,11 +69,11 @@ def g():
         'datetime': [now],
        }
     monitor_df = pd.DataFrame(data)
+    history_df = monitor_fg.read()
     monitor_fg.insert(monitor_df, write_options={"wait_for_job" : False})
     
-    history_df = monitor_fg.read()
-    # Add our prediction to the history, as the history_df won't have it - 
-    # the insertion was done asynchronously, so it will take ~1 min to land on App
+    
+
     history_df = pd.concat([history_df, monitor_df])
     # Converting to string because it is a smallint
     history_df["prediction"] = history_df["prediction"].astype(str)
