@@ -77,8 +77,14 @@ def g():
     # Add our prediction to the history, as the history_df won't have it - 
     # the insertion was done asynchronously, so it will take ~1 min to land on App
     history_df = pd.concat([history_df, monitor_df])
-
-
+    # Converting to string because it is a smallint
+    history_df["prediction"] = history_df["prediction"].astype(str)
+    history_df["label"] = history_df["label"].astype(str)
+    # Mapping zero and ones to survived and not survived
+    history_df['prediction'] = history_df['prediction'].map({"1": 'Survived', "0": 'Not Survived'})
+    history_df['label'] = history_df['label'].map({"1": 'Survived', "0": 'Not Survived'})
+    
+    # taking just the most recent 4
     df_recent = history_df.tail(4)
     dfi.export(df_recent, './df_recent.png', table_conversion = 'matplotlib')
     dataset_api.upload("./df_recent.png", "Resources/images", overwrite=True)
@@ -89,16 +95,13 @@ def g():
     
     # Only create the confusion matrix when our titanic_predictions feature group has examples of both passengers survived and not survived
     print("Number of different passengers predictions to date: " + str(predictions.value_counts().count()))
-    if predictions.value_counts().count() == 3:
-	    results = confusion_matrix(labels, predictions)
-	    
-	    df_cm = pd.DataFrame(results, ['True Not Survived', 'True Survived'],
-		                 ['Pred Not Survived', 'Pred Survived'])
-	    
-	    cm = sns.heatmap(df_cm, annot=True)
-	    fig = cm.get_figure()
-	    ig.savefig("./confusion_matrix.png")
-	    dataset_api.upload("./confusion_matrix.png", "Resources/images", overwrite=True)
+    if predictions.value_counts().count() == 2:
+    	results = confusion_matrix(labels,predictions)
+    	df_cm = pd.DataFrame(results, ['True Not Survived', 'True Survived'],['Pred Not Survived', 'Pred Survived'])
+    	cm = sns.heatmap(df_cm, annot=True)
+    	fig = cm.get_figure()
+    	fig.savefig("./confusion_matrix.png")
+    	dataset_api.upload("./confusion_matrix.png", "Resources/images", overwrite=True)
     else:
         print("You need 2 different passengers predictions to create the confusion matrix.")
         print("Run the batch inference pipeline more times until you get 2 different titanic passenger predictions") 
