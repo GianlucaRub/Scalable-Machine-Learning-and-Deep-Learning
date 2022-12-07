@@ -49,15 +49,7 @@ As result, the steps followed in the augmented feature pipeline are:
 - Apply [Whisper Tokenizer Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperTokenizer).
 
 ## Training Pipeline
-For the same constraints, it has not been possible to perform a cross validation process, but the best model has been selected according to the score on the validationset
-- Gradient Boosting Classifier from Keras has been selected as model to use.
-- The feature view given as input is made entirely from the previously created feature group.
-- The model has been saved in Hopsworks' model registry.
-- The script runs on Modal daily.
-- The dataset has been split in train and test with a 80/20 ratio.
-- The results of the evaluation on the test set are:
-
-![](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Lab1/titanic_model/confusion_matrix.png?raw=true)
+The models have been trained following the [notebook](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Lab2/swedish_fine_tune_whisper.ipynb) provided by the professor.
 
 ## Daily Feature Pipeline for Synthetic Data
 - Data has been generate by taking random values from each column of the original cleaned dataset.
