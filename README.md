@@ -24,7 +24,14 @@ Jim Dowling
 
 ## Feature Pipeline
 The feature pipeline has been heavily affected by two aspects: heavy limitations in the resource provided by colab, despite having paid a Colab Pro subscription, and due to the huge size of the complete preprocessed dataset, around 200 GB. As result, we decided to use as training set just the first 10% of the complete train and validation data. The evaluation (or validation) is composed by the first 10% of the complete test data.
+Steps followed in the feature pipeline:
+- Download the dataset;
+- Remove not useful features such as accent, age, gender, etc, leaving just the audio array;
+- Change the sample rate to 48000 to 16000;
+- Apply [Whisper Feature Extractor Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperFeatureExtractor);
+- Apply [Whisper Tokenizer Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperTokenizer).
 ## Training Pipeline
+For the same constraints, it has not been possible to perform a cross validation process, but the best model has been selected according to the score on the validationset
 - Gradient Boosting Classifier from Keras has been selected as model to use.
 - The feature view given as input is made entirely from the previously created feature group.
 - The model has been saved in Hopsworks' model registry.
