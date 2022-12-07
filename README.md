@@ -49,7 +49,10 @@ As result, the steps followed in the augmented feature pipeline are:
 - Apply [Whisper Tokenizer Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperTokenizer).
 
 ## Training Pipeline
-The models have been trained following the [notebook](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Lab2/swedish_fine_tune_whisper.ipynb) provided by the professor.
+The models have been trained following the [notebook](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Lab2/swedish_fine_tune_whisper.ipynb) provided by the professor:
+- A pretrained model is loaded and then trained on the Italian dataset using the [Seq2Seq Trainer](https://huggingface.co/docs/transformers/v4.25.1/en/main_classes/trainer#transformers.Seq2SeqTrainer) class;
+- The model is saved on drive and uploaded as repository on HuggingFace;
+- The model is checkpointed and evaluated at every 1000 steps.
 
 ## Daily Feature Pipeline for Synthetic Data
 - Data has been generate by taking random values from each column of the original cleaned dataset.
