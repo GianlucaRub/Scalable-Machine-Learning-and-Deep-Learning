@@ -54,12 +54,13 @@ The models have been trained following the [notebook](https://github.com/Gianluc
 - The model is saved on drive and uploaded as repository on HuggingFace;
 - The model is checkpointed and evaluated at every 1000 steps.
 
-## Daily Feature Pipeline for Synthetic Data
-- Data has been generate by taking random values from each column of the original cleaned dataset.
-- There is a 50/50 probability for the synthetic passenger to survive or not.
-- Data generated is then added to Hopsworks' feature group, on which the model is trained daily.
-- The script runs on Modal daily.
+## Hyperparemeter Tuning
+Due to the previously stated limitations, the dataset used as benchmark for the hyperparameter tuning is the evaluation dataset previously descripted. If we had more time (and space) we would have performed k-fold cross validation to have more robust results.
+Moreover, we chosed to focus mainly on the smaller version of the Whisper family, the tiny model because it has less parameters and therefore requires less time to train.
+Starting from the whisper tiny model we:
+- Changed the learning rate, going from 1e-4 to 1e-6, where the default is 1e-5;
+- Changed the weight decay, going from 0.0 to 0.3, where the default is 0.0;
+- Put the dropout of the attention layer, the decoder layer and the encoder layer to 0.1, where the default is 0.0;
+- Changed the number of attention heads to 8, where the default is 6.
 
-## Batch Inference Pipeline
-- Every day the script runs on Modal and evaluates the last passenger added in the dataset.
-- Results in the form of a confusion matrix and a table with the last 4 predictions are saved on Hopsworks in order to be accessed from the [Gradio Monitor application](https://huggingface.co/spaces/GIanlucaRub/Titanic-monitor).
+However, the attempts to change the network structure were often unsuccessful since the weights associated with the new structure where not pretrained. With high probability having more data (and more time) would have lead to different results.
