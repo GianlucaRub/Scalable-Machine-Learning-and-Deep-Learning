@@ -14,7 +14,7 @@ Jim Dowling
 - Explain how to improve the performance of your model with either model-centric improvements or data centric improvements;
 - Use the [Italian Common Voice Dataset](https://huggingface.co/datasets/mozilla-foundation/common_voice_11_0/viewer/it/train) 11.0 from Mozilla Foundation.
 - Use [Google Colab](https://colab.research.google.com/)
-## Gradio Applications
+## Gradio Application
 [WebApp](https://huggingface.co/spaces/GIanlucaRub/whisper-it) that allows you to:
 - Upload and transcribe an audio;
 - Record and transcribe an audio;
