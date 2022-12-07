@@ -71,4 +71,5 @@ However, the attempts to change the network structure were often unsuccessful si
 | Model Version | Evaluation Loss | Evaluation Wer | Description |
 |:-------------:|:---------------:|:--------------:|:------------|
 | Tiny 1        | 0.711901        | 43.295896      |sdasdsad     |
+| Tiny 1        | 0.711901        | 43.295896      |However, the attempts to change the network structure were often unsuccessful since the weights associated with the new structure where not pretrained. With high probability having more data (and more time) would have lead to different results.     |
 
