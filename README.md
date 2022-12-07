@@ -30,6 +30,12 @@ Steps followed in the feature pipeline:
 - Change the sample rate to 48000 to 16000;
 - Apply [Whisper Feature Extractor Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperFeatureExtractor);
 - Apply [Whisper Tokenizer Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperTokenizer).
+
+## Augmented Feature Pipeline
+In order to improve the performance, data augmentation techniques have been applied to the train data, including:
+- Adding random noise;
+- Pitch modification;
+- Speed modification.
 ## Training Pipeline
 For the same constraints, it has not been possible to perform a cross validation process, but the best model has been selected according to the score on the validationset
 - Gradient Boosting Classifier from Keras has been selected as model to use.
