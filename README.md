@@ -1,5 +1,5 @@
 # ID2223 Scalable Machine Learning and Deep Learning
-## Lab1
+## Lab2
 **Professor:**
 Jim Dowling
 
