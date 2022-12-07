@@ -9,13 +9,10 @@ Jim Dowling
 - Fabio Camerota
 
 ## Task description
-- Write a feature pipeline that registers the titantic dataset as a Feature Group with [Hopsworks](https://www.hopsworks.ai/).
-- Write a training pipeline that reads training data with a Feature View from Hopsworks, trains a binary classifier model to predict if a particular passenger survived the Titanic or not. Register the model with Hopsworks.
--  Write a Gradio application that downloads your model from Hopsworks and provides a User Interface to allow users to enter or select feature values to predict if a passenger with the provided features would survive or not.
-- Write a synthetic data passenger generator and update your feature pipeline to allow it to add new synthetic passengers.
-- Write a batch inference pipeline to predict if the synthetic passengers survived or not, and build a Gradio application to show the most recent synthetic passenger prediction and outcome, and a confusion matrix with historical prediction performance.
-- Use the [Titanic Dataset](https://raw.githubusercontent.com/ID2223KTH/id2223kth.github.io/master/assignments/lab1/titanic.csv)
-- Use [Modal](https://modal.com/) to run the code.
+- Fine tune a pre-trained [Whisper](https://huggingface.co/docs/transformers/model_doc/whisper) transformer model to transcribe Italian audio to text.
+- Write a Gradio application that provides a User Interface to allow users to use your model in an useful or entertaining way.
+- Explain how to improve the performance of your model with either model-centric improvements or data centric improvements
+- Use the [Italian Common Voice Dataset](https://huggingface.co/datasets/mozilla-foundation/common_voice_11_0/viewer/it/train) 11.0 from Mozilla Foundation.
 
 ## Gradio Applications
 - [Predict if a passenger would survive or not](https://huggingface.co/spaces/GIanlucaRub/Titanic)
