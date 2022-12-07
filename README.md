@@ -13,7 +13,7 @@ Jim Dowling
 - Write a Gradio application that provides a User Interface to allow users to use your model in an useful or entertaining way;
 - Explain how to improve the performance of your model with either model-centric improvements or data centric improvements;
 - Use the [Italian Common Voice Dataset](https://huggingface.co/datasets/mozilla-foundation/common_voice_11_0/viewer/it/train) 11.0 from Mozilla Foundation.
-
+- Use [Google Colab](https://colab.research.google.com/)
 ## Gradio Applications
 [WebApp](https://huggingface.co/spaces/GIanlucaRub/whisper-it) that allows you to:
 - Upload and transcribe an audio;
@@ -22,17 +22,8 @@ Jim Dowling
 - Transcribe a youtube video.
 
 
-## Serverless Infrastructure Model
-![](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Lab1/assets/serverless_schema.png?raw=true)
-
 ## Feature Pipeline
-The original dataset has been preprocessed in the following way:
-- Columns PassengerId, Name and ticket has been removed since they were too specific and could lead to overfitting.
-- Column Cabin has been removed since it had too many null values (77%).
-- Columns Sex and Embarked has been one hot encoded.
-
-After the preprocessing, the feature group has been created on Hopsworks.
-
+The feature pipeline has been heavily affected by two aspects: heavy limitations in the resource provided by colab, despite having paid a Colab Pro subscription, and due to the huge size of the complete preprocessed dataset, around 200 GB. As result, we decided to use as training set just the first 10% of the complete train and validation data. The evaluation (or validation) is composed by the first 10% of the complete test data.
 ## Training Pipeline
 - Gradient Boosting Classifier from Keras has been selected as model to use.
 - The feature view given as input is made entirely from the previously created feature group.
