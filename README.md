@@ -38,6 +38,8 @@ In order to improve the performance, data augmentation techniques have been appl
 - Speed modification.
 
 Data augmentation has been applied with a specific degree of randomness: each technique had 50% of probability of being applied to a data sample. Random noise and pitch modification are uniformly distributed between 0.0 and 0.1 for each sample, while speed modification coefficient is uniformly distributed between 0.5 and 1.5 for each sample.
+
+
 As result, the steps followed in the augmented feature pipeline are:
 - Download the dataset;
 - Remove not useful features such as accent, age, gender, etc, leaving just the audio array;
