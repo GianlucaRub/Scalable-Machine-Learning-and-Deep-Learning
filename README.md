@@ -9,14 +9,18 @@ Jim Dowling
 - Fabio Camerota
 
 ## Task description
-- Fine tune a pre-trained [Whisper](https://huggingface.co/docs/transformers/model_doc/whisper) transformer model to transcribe Italian audio to text.
-- Write a Gradio application that provides a User Interface to allow users to use your model in an useful or entertaining way.
-- Explain how to improve the performance of your model with either model-centric improvements or data centric improvements
+- Fine tune a pre-trained [Whisper](https://huggingface.co/docs/transformers/model_doc/whisper) transformer model to transcribe Italian audio to text;
+- Write a Gradio application that provides a User Interface to allow users to use your model in an useful or entertaining way;
+- Explain how to improve the performance of your model with either model-centric improvements or data centric improvements;
 - Use the [Italian Common Voice Dataset](https://huggingface.co/datasets/mozilla-foundation/common_voice_11_0/viewer/it/train) 11.0 from Mozilla Foundation.
 
 ## Gradio Applications
-- [Predict if a passenger would survive or not](https://huggingface.co/spaces/GIanlucaRub/Titanic)
-- [Monitor the daily performance](https://huggingface.co/spaces/GIanlucaRub/Titanic-monitor)
+[WebApp](https://huggingface.co/spaces/GIanlucaRub/Titanic) that allows you to:
+- Upload and transcribe an audio;
+- Record and transcribe an audio;
+- Upload and transcribe a video;
+- Transcribe a youtube video.
+
 
 ## Serverless Infrastructure Model
 ![](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Lab1/assets/serverless_schema.png?raw=true)
