@@ -36,6 +36,15 @@ In order to improve the performance, data augmentation techniques have been appl
 - Adding random noise;
 - Pitch modification;
 - Speed modification.
+Data augmentation has been applied with a specific degree of randomness: each technique had 50% of probability of being applied to a data sample. Random noise and pitch modification are uniformly distributed between 0.0 and 0.1 for each sample, while speed modification coefficient is uniformly distributed between 0.5 and 1.5 for each sample.
+As result, the steps followed in the augmented feature pipeline are:
+- Download the dataset;
+- Remove not useful features such as accent, age, gender, etc, leaving just the audio array;
+- Change the sample rate to 48000 to 16000;
+- Apply Data Augmentation;
+- Apply [Whisper Feature Extractor Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperFeatureExtractor);
+- Apply [Whisper Tokenizer Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperTokenizer).
+
 ## Training Pipeline
 For the same constraints, it has not been possible to perform a cross validation process, but the best model has been selected according to the score on the validationset
 - Gradient Boosting Classifier from Keras has been selected as model to use.
