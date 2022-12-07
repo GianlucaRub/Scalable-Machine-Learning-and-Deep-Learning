@@ -70,6 +70,12 @@ However, the attempts to change the network structure were often unsuccessful si
 
 | Model Version | Evaluation Loss | Evaluation Wer | Description |
 |:-------------:|:---------------:|:--------------:|:------------|
-| Tiny 1        | 0.711901        | 43.295896      |sdasdsad     |
-| Tiny 1        | 0.711901        | 43.295896      |However, the attempts to change the network structure were often unsuccessful since the weights associated with the new structure where not pretrained. With high probability having more data (and more time) would have lead to different results.     |
+| Tiny 1        | 0.7119          | 43.2959        |Plain Whisper Tiny model     |
+| Tiny 2        | 0.7115          | 43.3930        |Weight Decay set to 0.3    |
+| Tiny 3        | 0.7117          | 43.2335        |Weight Decay set to 0.1     |
+| Tiny 4        | 0.7126          | 41.3547        |Weight Decay set to 0.1 and Learning Rate set to 5e-5|
+| Tiny 5        | 0.7609          | 41.2715        |Weight Decay set to 0.1 and Learning Rate set to 1e-4|
+| Tiny 6        | 0.8288          | 46.2770        |Weight Decay set to 0.1, Learning Rate set to 1e-4,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
+| Tiny 7        | 2.1378          | 97.5666        |Weight Decay set to 0.1, Learning Rate set to 1e-6,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
+
 
