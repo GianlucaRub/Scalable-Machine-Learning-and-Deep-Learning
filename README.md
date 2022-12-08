@@ -78,4 +78,4 @@ However, the attempts to change the network structure were often unsuccessful si
 | Tiny 6        | 46.2770        |Weight Decay set to 0.1, Learning Rate set to 1e-4,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
 | Tiny 7        | 97.5666        |Weight Decay set to 0.1, Learning Rate set to 1e-6,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
 | Tiny 8        | 56.9052        |Weight Decay set to 0.1, Learning Rate set to 1e-5,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
-| Tiny 10       | 45.3272        |Plain Whisper Tiny model trained with data augmentation|
+| Tiny 9        | 45.3272        |Weight Decay set to 0.1 and Learning Rate set to 1e-4, trained with data augmentation|
