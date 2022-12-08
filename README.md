@@ -48,6 +48,7 @@ As result, the steps followed in the augmented feature pipeline are:
 - Apply [Whisper Feature Extractor Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperFeatureExtractor);
 - Apply [Whisper Tokenizer Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperTokenizer).
 
+However, training with the augmented dataset did not improve the results, probably because we were using a small part of the dataset and it resulted in overfitting. If we had more time (and space) we would have applied data augmentation to the entire dataset.
 ## Training Pipeline
 The models have been trained following the [notebook](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Lab2/swedish_fine_tune_whisper.ipynb) provided by the professor:
 - A pretrained model is loaded and then trained on the Italian dataset using the [Seq2Seq Trainer](https://huggingface.co/docs/transformers/v4.25.1/en/main_classes/trainer#transformers.Seq2SeqTrainer) class;
