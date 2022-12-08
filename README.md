@@ -66,7 +66,7 @@ Starting from the whisper tiny model we:
 However, the attempts to change the network structure were often unsuccessful since the weights associated with the new structure where not pretrained. With high probability having more data (and more time) would have lead to different results.
 
 ## Scoreboard
-If nothing else is specified in the description, the starting model is the Whisper Tiny model. Scores in bold mean that there has been an improvement.
+If nothing else is specified in the description, the starting model is the Whisper Tiny model and the dataset used for training is the first 10% of the total dataset. Scores in bold mean that there has been an improvement.
 
 | Model Version | Evaluation Wer | Description |
 |:-------------:|:--------------:|:------------|
@@ -79,3 +79,4 @@ If nothing else is specified in the description, the starting model is the Whisp
 | Tiny 7        | 97.5666        |Weight Decay set to 0.1, Learning Rate set to 1e-6,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
 | Tiny 8        | 56.9052        |Weight Decay set to 0.1, Learning Rate set to 1e-5,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
 | Tiny 9        | 45.3272        |Weight Decay set to 0.1 and Learning Rate set to 1e-4, trained with data augmentation|
+| Small         | **22.1090**        |Plain Whisper Small model|
