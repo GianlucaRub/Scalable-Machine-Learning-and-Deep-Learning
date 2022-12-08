@@ -81,4 +81,5 @@ If nothing else is specified in the description, the starting model is the Whisp
 | Tiny 8        | 56.9052        |Weight Decay set to 0.1, Learning Rate set to 1e-5,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
 | Tiny 9        | 45.3272        |Weight Decay set to 0.1 and Learning Rate set to 1e-4, trained with data augmentation|
 | Tiny 10       | 46.8178        |Trained with data augmentation|
+| Tiny 11       | 42.2768        |Trained on 25% of the entire dataset|
 | Small         | **22.1090**    |Plain Whisper Small model|
