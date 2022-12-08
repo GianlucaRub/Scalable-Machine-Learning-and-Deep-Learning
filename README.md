@@ -71,15 +71,15 @@ If nothing else is specified in the description, the starting model is the Whisp
 
 | Model Version | Evaluation Wer | Description |
 |:-------------:|:--------------:|:------------|
-| Tiny 1        | 43.2959        |Plain Whisper Tiny model     |
-| Tiny 2        | 43.3930        |Weight Decay set to 0.3    |
-| Tiny 3        | **43.2335**    |Weight Decay set to 0.1     |
-| Tiny 4        | **41.3547**    |Weight Decay set to 0.1 and Learning Rate set to 5e-5|
-| Tiny 5        | **41.2715**    |Weight Decay set to 0.1 and Learning Rate set to 1e-4|
-| Tiny 6        | 46.2770        |Weight Decay set to 0.1, Learning Rate set to 1e-4,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
-| Tiny 7        | 97.5666        |Weight Decay set to 0.1, Learning Rate set to 1e-6,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
+| [Tiny 1](https://huggingface.co/GIanlucaRub/whisper-tiny-it-1)        | 43.2959        |Plain Whisper Tiny model     |
+| [Tiny 2](https://huggingface.co/GIanlucaRub/whisper-tiny-it-2)        | 43.3930        |Weight Decay set to 0.3    |
+| [Tiny 3](https://huggingface.co/GIanlucaRub/whisper-tiny-it-3)        | **43.2335**    |Weight Decay set to 0.1     |
+| [Tiny 4](https://huggingface.co/GIanlucaRub/whisper-tiny-it-4)        | **41.3547**    |Weight Decay set to 0.1 and Learning Rate set to 5e-5|
+| [Tiny 5](https://huggingface.co/GIanlucaRub/whisper-tiny-it-5)        | **41.2715**    |Weight Decay set to 0.1 and Learning Rate set to 1e-4|
+| [Tiny 6](https://huggingface.co/GIanlucaRub/whisper-tiny-it-6)        | 46.2770        |Weight Decay set to 0.1, Learning Rate set to 1e-4,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
+| [Tiny 7](https://huggingface.co/GIanlucaRub/whisper-tiny-it-7)        | 97.5666        |Weight Decay set to 0.1, Learning Rate set to 1e-6,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
 | Tiny 8        | 56.9052        |Weight Decay set to 0.1, Learning Rate set to 1e-5,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
-| Tiny 9        | 45.3272        |Weight Decay set to 0.1 and Learning Rate set to 1e-4, trained with data augmentation|
-| Tiny 10       | 46.8178        |Trained with data augmentation|
+| [Tiny 9](https://huggingface.co/GIanlucaRub/whisper-tiny-it-9)        | 45.3272        |Weight Decay set to 0.1 and Learning Rate set to 1e-4, trained with data augmentation|
+| [Tiny 10](https://huggingface.co/GIanlucaRub/whisper-tiny-it-10)       | 46.8178        |Trained with data augmentation|
 | Tiny 11       | 42.2768        |Trained on 25% of the entire dataset|
-| Small         | **22.1090**    |Plain Whisper Small model|
+| [Small](https://huggingface.co/GIanlucaRub/whisper-small-it-3)         | **22.1090**    |Plain Whisper Small model|
