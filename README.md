@@ -94,3 +94,6 @@ The best performing model, Whisper Small, has been tested on the not previously 
 | Model Version | Final Test WER | Description |
 |:-------------:|:--------------:|:------------|
 | [Small](https://huggingface.co/GIanlucaRub/whisper-small-it-3)         | 16.2960    |Plain Whisper Small model|
+## Conclusion
+The result of the project are heavily biased from the resources available on Colab. In fact, for the first days, we were not able to preprocess the dataset, since Colab was not giving us resources. In the ideal case, we would have used the entire train dataset to perform cross validation on the different models. In this case we would have been able to test also the larger Whisper transformers and to perform a better hyperparameter tuning process, possibily creating custom architectures that had some weights not pretrained. Moreover during the data augmentation space we would have tried different combinations of noise.
+However, with the resources available, we were able to improve the performance of the tiny model of 5%. Nevertheless, using a bigger model (240M parameters vs 37M parameters) resulted in better performance.
