@@ -35,6 +35,8 @@ Steps followed in the feature pipeline:
 - Apply [Whisper Feature Extractor Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperFeatureExtractor);
 - Apply [Whisper Tokenizer Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperTokenizer).
 
+
+However, while performing model selection step, we decided to train a model also on 25% of the entire train data.
 ## Augmented Feature Pipeline
 In order to improve the performance, data augmentation techniques have been applied to the train data, including:
 - Adding random noise;
