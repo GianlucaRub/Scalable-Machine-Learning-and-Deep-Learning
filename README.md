@@ -14,6 +14,7 @@ Jim Dowling
 - Explain how to improve the performance of your model with either model-centric improvements or data centric improvements;
 - Use the [Italian Common Voice Dataset](https://huggingface.co/datasets/mozilla-foundation/common_voice_11_0/viewer/it/train) 11.0 from Mozilla Foundation.
 - Use [Google Colab](https://colab.research.google.com/)
+## Infrastructure Model
 ## Gradio Application
 [WebApp](https://huggingface.co/spaces/GIanlucaRub/whisper-it) that allows you to:
 - Upload and transcribe an audio;
@@ -67,9 +68,9 @@ Starting from the whisper tiny model we:
 However, the attempts to change the network structure were often unsuccessful since the weights associated with the new structure where not pretrained. With high probability having more data (and more time) would have lead to different results.
 
 ## Scoreboard
-If nothing else is specified in the description, the starting model is the Whisper Tiny model and the dataset used for training is the first 10% of the total dataset. Scores in bold mean that there has been an improvement.
+If nothing else is specified in the description, the starting model is the Whisper Tiny model and the dataset used for training is the first 10% of the total dataset. Scores in bold mean that there has been an improvement. The metric used for comparison is the Word Error Rate (WER), computed on the first 10% of the entire test dataset.
 
-| Model Version | Evaluation Wer | Description |
+| Model Version | Evaluation WER | Description |
 |:-------------:|:--------------:|:------------|
 | [Tiny 1](https://huggingface.co/GIanlucaRub/whisper-tiny-it-1)        | 43.2959        |Plain Whisper Tiny model     |
 | [Tiny 2](https://huggingface.co/GIanlucaRub/whisper-tiny-it-2)        | 43.3930        |Weight Decay set to 0.3    |
@@ -83,3 +84,8 @@ If nothing else is specified in the description, the starting model is the Whisp
 | [Tiny 10](https://huggingface.co/GIanlucaRub/whisper-tiny-it-10)       | 46.8178        |Trained with data augmentation|
 | Tiny 11       | 42.2768        |Trained on 25% of the entire dataset|
 | [Small](https://huggingface.co/GIanlucaRub/whisper-small-it-3)         | **22.1090**    |Plain Whisper Small model|
+## Final Test
+The best performing model, Whisper Small, has been tested on the not previously used part of the entire test set (90% of the entire test set). In this way, it is possible to have a more reliable estimate of the performance of the model. Computing the evaluation on the final test set required more than 3 hours.
+| Model Version | Final Test WER | Description |
+|:-------------:|:--------------:|:------------|
+| [Small](https://huggingface.co/GIanlucaRub/whisper-small-it-3)         | **16.2960**    |Plain Whisper Small model|
