@@ -15,6 +15,9 @@ Jim Dowling
 - Use the [Italian Common Voice Dataset](https://huggingface.co/datasets/mozilla-foundation/common_voice_11_0/viewer/it/train) 11.0 from Mozilla Foundation.
 - Use [Google Colab](https://colab.research.google.com/)
 ## Infrastructure Model
+- Feature Pipeline and its variations, including changing the size of the amount of data processed and applying data augmentation techniques. It runs on Colab and stores there the output.
+- Training Pipeline, which is the same for all models, but changes some hyperparameters. It runs on Colab. The output is stored on HuggingFace.
+- Gradio Application, it is used to interact with the model. It is hosted on HuggingFace.
 ## Gradio Application
 [WebApp](https://huggingface.co/spaces/GIanlucaRub/whisper-it) that allows you to:
 - Upload and transcribe an audio;
