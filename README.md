@@ -84,10 +84,10 @@ If nothing else is specified in the description, the starting model is the Whisp
 | [Tiny 5](https://huggingface.co/GIanlucaRub/whisper-tiny-it-5)        | **41.2715**    |Weight Decay set to 0.1 and Learning Rate set to 1e-4|
 | [Tiny 6](https://huggingface.co/GIanlucaRub/whisper-tiny-it-6)        | 46.2770        |Weight Decay set to 0.1, Learning Rate set to 1e-4,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
 | [Tiny 7](https://huggingface.co/GIanlucaRub/whisper-tiny-it-7)        | 97.5666        |Weight Decay set to 0.1, Learning Rate set to 1e-6,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
-| Tiny 8        | 56.9052        |Weight Decay set to 0.1, Learning Rate set to 1e-5,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
+| [Tiny 8](https://huggingface.co/FCameCode/whisper-tiny-it-8)        | 56.9052        |Weight Decay set to 0.1, Learning Rate set to 1e-5,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
 | [Tiny 9](https://huggingface.co/GIanlucaRub/whisper-tiny-it-9)        | 45.3272        |Weight Decay set to 0.1 and Learning Rate set to 1e-4, trained with data augmentation|
 | [Tiny 10](https://huggingface.co/GIanlucaRub/whisper-tiny-it-10)       | 46.8178        |Trained with data augmentation|
-| Tiny 11       | 42.2768        |Trained on 25% of the entire dataset|
+| [Tiny 11](https://huggingface.co/FCameCode/whisper-tiny-it-11)       | 42.2768        |Trained on 25% of the entire dataset|
 | [Small](https://huggingface.co/GIanlucaRub/whisper-small-it-3)         | **22.1090**    |Plain Whisper Small model|
 ## Final Test
 The best performing model, Whisper Small, has been tested on the not previously used part of the entire test set (90% of the entire test set). In this way, it is possible to have a more reliable estimate of the performance of the model. Computing the evaluation on the final test set required more than 3 hours.
