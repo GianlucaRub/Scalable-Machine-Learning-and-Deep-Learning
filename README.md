@@ -88,4 +88,4 @@ If nothing else is specified in the description, the starting model is the Whisp
 The best performing model, Whisper Small, has been tested on the not previously used part of the entire test set (90% of the entire test set). In this way, it is possible to have a more reliable estimate of the performance of the model. Computing the evaluation on the final test set required more than 3 hours.
 | Model Version | Final Test WER | Description |
 |:-------------:|:--------------:|:------------|
-| [Small](https://huggingface.co/GIanlucaRub/whisper-small-it-3)         | **16.2960**    |Plain Whisper Small model|
+| [Small](https://huggingface.co/GIanlucaRub/whisper-small-it-3)         | 16.2960    |Plain Whisper Small model|
