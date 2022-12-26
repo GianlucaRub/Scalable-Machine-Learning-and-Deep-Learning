@@ -28,73 +28,34 @@ Jim Dowling
 - The [Monitor WebApp](https://huggingface.co/spaces/GIanlucaRub/DoubleResolution-Monitor), takes the Nasa picture of the day and doubles its resolution. The picture is obtained by using their [API](https://github.com/nasa/apod-api). To update the page with the new picture, we added a button that calls the API to obtain the new picture. Sometimes the picture of the day is a video, in that case, we use the API to download the picture of a valid day.
 - Since we are hosting both webapps on a free server, we do not have access to a GPU and we do not have many CPU cores, as result, using the model for pictures with high resolution may take several minutes.
 ## Feature Pipeline
-The dataset used is [Google Open Image Dataset](https://storage.googleapis.com/openimages/web/download.html). It is made by around 1.9 millions pictures. 
+The dataset used is [Google Open Image Dataset](https://storage.googleapis.com/openimages/web/download.html). 
+It is made by around 1.9 millions pictures. 
 The images are split into train (1,743,042), validation (41,620), and test (125,436) sets.  
 The images are rescaled to have at most 1024 pixels on their longest side and at least 256 pixels on 
 the shortest side, while preserving their original aspect-ratio. The total size is 561GB. The training set is dividend into 16 different parts.
 
 Theoretically the feature pipeline would run before the training pipeline and would resize each picture 
-to 256x256 while mantaining its proportions, however Colab has some problem with the synchronization of the 
+to 256x256 while maintaining its proportions, however Colab has some problem with the synchronization of the 
 VM with Google Drive when using many files. As result, the dataset has been downloaded and preprocessed 
 in the training pipeline since it required less time. In fact, dowloading and storing one part of the dataset on 
-Google Drive, requires more time than a night, while doing the same on the local hard disk of the notebook required just 20 minutes, which is acceptable.
-## Augmented Feature Pipeline
-In order to improve the performance, data augmentation techniques have been applied to the train data, including:
-- Adding random noise;
-- Pitch modification;
-- Speed modification.
-
-Data augmentation has been applied with a specific degree of randomness: each technique had 50% of probability of being applied to a data sample. Random noise and pitch modification are uniformly distributed between 0.0 and 0.1 for each sample, while speed modification coefficient is uniformly distributed between 0.5 and 1.5 for each sample.
-
-
-As result, the steps followed in the augmented feature pipeline are:
-- Download the dataset;
-- Remove not useful features such as accent, age, gender, etc, leaving just the audio array;
-- Change the sample rate to 48000 to 16000;
-- Apply Data Augmentation;
-- Apply [Whisper Feature Extractor Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperFeatureExtractor);
-- Apply [Whisper Tokenizer Tiny](https://huggingface.co/docs/transformers/model_doc/whisper#transformers.WhisperTokenizer).
-
-However, training with the augmented dataset did not improve the results, probably because we were using a small part of the dataset and it resulted in overfitting. If we had more time (and space) we would have applied data augmentation to the entire dataset.
+Google Drive, requires more time than a night, while doing the same on the local hard disk of 
+the notebook required just 20 minutes, which is acceptable.
 ## Training Pipeline
-The models have been trained following the [notebook](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Lab2/swedish_fine_tune_whisper.ipynb) provided by the professor:
-- A pretrained model is loaded and then trained on the Italian dataset using the [Seq2Seq Trainer](https://huggingface.co/docs/transformers/v4.25.1/en/main_classes/trainer#transformers.Seq2SeqTrainer) class;
-- The model is saved on drive and uploaded as repository on HuggingFace;
-- The model is checkpointed and evaluated at every 1000 steps.
+Since we had a very big dataset, it was not possible to train a model using it in its entirety. 
+Training the model one part (1/16) of the dataset for one epoch required around 40 minutes, therefore training the 
+model for one epoch on the entire dataset required more than 10 hours. 
+In this situation it was not even possible to use checkpointing.
+Inspired by the bagging technique, we trained 16 different models on each part of the dataset. The final output would be their averaged prediction.
+Following this technique we did not use any regularization technique, since bagging requires complex models that overfit the data.
+However, the error differenence between train and validation was generally low, meaning that the generalization capabilities of our models were good.
+In this way we solved the problem of having too much data, and we were also able to parallelize the training. We trained two models at the same time.
+The model structure is similar to a U-Net, but it has, obviously, the final layers that are up-sampled, resulting in a bigger size than the input.
+We used skip connections to propagate better the gradient.
+The loss function used was Binary Crossentropy, since it is well suited for the pixel representation. The optimizer used was Adam.
 
-## Hyperparemeter Tuning
-Due to the previously stated limitations, the dataset used as benchmark for the hyperparameter tuning is the evaluation dataset previously descripted. If we had more time (and space) we would have performed k-fold cross validation to have more robust results.
-Moreover, we chosed to focus mainly on the smaller version of the Whisper family, the tiny model because it has less parameters and therefore requires less time to train.
-Starting from the whisper tiny model we:
-- Changed the learning rate, going from 1e-4 to 1e-6, where the default is 1e-5;
-- Changed the weight decay, going from 0.0 to 0.3, where the default is 0.0;
-- Put the dropout of the attention layer, the decoder layer and the encoder layer to 0.1, where the default is 0.0;
-- Changed the number of attention heads to 8, where the default is 6.
-
-However, the attempts to change the network structure were often unsuccessful since the weights associated with the new structure where not pretrained. With high probability having more data (and more time) would have lead to different results.
-
-## Scoreboard
-If nothing else is specified in the description, the starting model is the Whisper Tiny model and the dataset used for training is the first 10% of the total dataset. Scores in bold mean that there has been an improvement. The metric used for comparison is the Word Error Rate (WER), computed on the first 10% of the entire test dataset.
-
-| Model Version | Evaluation WER | Description |
-|:-------------:|:--------------:|:------------|
-| [Tiny 1](https://huggingface.co/GIanlucaRub/whisper-tiny-it-1)        | 43.2959        |Plain Whisper Tiny model     |
-| [Tiny 2](https://huggingface.co/GIanlucaRub/whisper-tiny-it-2)        | 43.3930        |Weight Decay set to 0.3    |
-| [Tiny 3](https://huggingface.co/GIanlucaRub/whisper-tiny-it-3)        | **43.2335**    |Weight Decay set to 0.1     |
-| [Tiny 4](https://huggingface.co/GIanlucaRub/whisper-tiny-it-4)        | **41.3547**    |Weight Decay set to 0.1 and Learning Rate set to 5e-5|
-| [Tiny 5](https://huggingface.co/GIanlucaRub/whisper-tiny-it-5)        | **41.2715**    |Weight Decay set to 0.1 and Learning Rate set to 1e-4|
-| [Tiny 6](https://huggingface.co/GIanlucaRub/whisper-tiny-it-6)        | 46.2770        |Weight Decay set to 0.1, Learning Rate set to 1e-4,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
-| [Tiny 7](https://huggingface.co/GIanlucaRub/whisper-tiny-it-7)        | 97.5666        |Weight Decay set to 0.1, Learning Rate set to 1e-6,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
-| [Tiny 8](https://huggingface.co/FCameCode/whisper-tiny-it-8)        | 56.9052        |Weight Decay set to 0.1, Learning Rate set to 1e-5,attention dropout, encoder dropout and decoder dropout have been set to 0.1, the number of decoder attention heads and encoder attention heads have been set to 8|
-| [Tiny 9](https://huggingface.co/GIanlucaRub/whisper-tiny-it-9)        | 45.3272        |Weight Decay set to 0.1 and Learning Rate set to 1e-4, trained with data augmentation|
-| [Tiny 10](https://huggingface.co/GIanlucaRub/whisper-tiny-it-10)       | 46.8178        |Trained with data augmentation|
-| [Tiny 11](https://huggingface.co/FCameCode/whisper-tiny-it-11)       | 42.2768        |Trained on 25% of the entire dataset|
-| [Small](https://huggingface.co/GIanlucaRub/whisper-small-it-3)         | **22.1090**    |Plain Whisper Small model|
-## Final Test
-The best performing model, Whisper Small, has been tested on the not previously used part of the entire test set (90% of the entire test set). In this way, it is possible to have a more reliable estimate of the performance of the model. Computing the evaluation on the final test set required more than 3 hours.
-| Model Version | Final Test WER | Description |
-|:-------------:|:--------------:|:------------|
-| [Small](https://huggingface.co/GIanlucaRub/whisper-small-it-3)         | 16.2960    |Plain Whisper Small model|
-## Conclusion
-The result of the project are heavily biased from the resources available on Colab. In fact, for the first days, we were not able to preprocess the dataset, since Colab was not giving us resources. In the ideal case, we would have used the entire train dataset to perform cross validation on the different models. In this case we would have been able to test also the larger Whisper transformers and to perform a better hyperparameter tuning process, possibily creating custom architectures that had some weights not pretrained. Moreover during the data augmentation space we would have tried different combinations of noise.
-However, with the resources available, we were able to improve the performance of the tiny model of 5%. Nevertheless, using a bigger model (240M parameters vs 37M parameters) resulted in better performance.
+### Model Structure
+![](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Project/Material/model_structure.png?raw=true)
+The model is a fully convolutional neural network, it has 11,563,655 parameters.
+The encoder part is made by convolutional layers and maxpooling layers. 
+While the decoding part is made by convolutional transpose layers that have their input concatenated with the output of the
+same size of the encoding part. At the end there are three convolutional layers.
