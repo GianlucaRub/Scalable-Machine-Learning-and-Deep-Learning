@@ -23,7 +23,7 @@ Jim Dowling
   - [User Interface WebApp](https://huggingface.co/spaces/GIanlucaRub/DoubleResolution), it allows the user to upload a picture and get its resolution augmented. It is hosted on HuggingFace.
   - [Monitor WebApp](https://huggingface.co/spaces/GIanlucaRub/DoubleResolution-Monitor), it doubles the resolution of the Nasa picture of the day. It is hosted on Huggingface.
 
-## Gradio Application
+## Gradio Applications
 - The [User Interface WebApp](https://huggingface.co/spaces/GIanlucaRub/DoubleResolution) takes the model from Huggingface and allows the user to upload a picture and get its horizontal and vertical resolution doubled. It means that the number of pixels is increased by a factor of 4. Since the model has been trained on pictures with a fixed size (from 128x128 to 256x256), the input picture is transformed using a sliding window. However, this approach led the output picture to have some artifacts on the delimiting regions of each square. As result, we had to predict more squares and overlap some regions.
 - The [Monitor WebApp](https://huggingface.co/spaces/GIanlucaRub/DoubleResolution-Monitor), takes the Nasa picture of the day and doubles its resolution. The picture is obtained by using their [API](https://github.com/nasa/apod-api). To update the page with the new picture, we added a button that calls the API to obtain the new picture. Sometimes the picture of the day is a video, in that case, we use the API to download the picture of a valid day.
 - Since we are hosting both webapps on a free server, we do not have access to a GPU and we do not have many CPU cores, as result, using the model for pictures with high resolution may take several minutes.
