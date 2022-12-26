@@ -51,6 +51,7 @@ However, the error differenence between train and validation was generally low, 
 In this way we solved the problem of having too much data, and we were also able to parallelize the training. We trained two models at the same time.
 The model structure is similar to a U-Net, but it has, obviously, the final layers that are up-sampled, resulting in a bigger size than the input.
 We used skip connections to propagate better the gradient.
+The framework used was tensorflow.
 The loss function used was Binary Crossentropy, since it is well suited for the pixel representation. The optimizer used was Adam.
 
 ### Model Structure
@@ -59,3 +60,13 @@ The model is a fully convolutional neural network, it has 11,563,655 parameters.
 The encoder part is made by convolutional layers and maxpooling layers. 
 While the decoding part is made by convolutional transpose layers that have their input concatenated with the output of the
 same size of the encoding part. At the end there are three convolutional layers.
+
+## Ensemble Pipeline
+The last step of our model development is to ensemble al the 16 trained models by averaging their predictions.
+The resulting model was stored in huggingface and tested on the test set.
+The test loss was 0.5021, however despite appearing high it is not the case. In fact, the binary crossentropy loss
+is not zero when the real output value is not exactly 0 or 1, like it is for the pixels. Moreover, we computed the
+loss on the same dataset by giving as input the same image of the output and not applying any transformation.
+The resulting error was 0.4928, just 1.88% lower.
+### Ensemble Model Structure
+![](https://github.com/GianlucaRub/Scalable-Machine-Learning-and-Deep-Learning/blob/main/Project/Material/ensemble_model_structure.png?raw=true)
